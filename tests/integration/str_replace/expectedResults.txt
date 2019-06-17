@@ -1,0 +1,1 @@
+integration/str_replace/str_replace.php:13 PerformanceCheckStrtr Dividing an array for str_replace is slow. Consider using strtr with the whole array.

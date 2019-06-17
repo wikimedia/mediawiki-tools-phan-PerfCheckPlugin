@@ -1,0 +1,2 @@
+integration/elseif/elseif.php:36 PerformanceCheckSwitchableElseif Long elseifs are slow. Consider replacing with a switch.
+integration/elseif/elseif.php:46 PerformanceCheckSwitchableElseif Long elseifs are slow. Consider replacing with a switch.

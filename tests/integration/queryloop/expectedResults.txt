@@ -1,0 +1,6 @@
+integration/queryloop/queryloop.php:10 PerformanceCheckQueryLoop Database queries within loops are slow. Consider using JOINS and/or other SQL constructs.
+integration/queryloop/queryloop.php:22 PerformanceCheckQueryLoop Database queries within loops are slow. Consider using JOINS and/or other SQL constructs.
+integration/queryloop/queryloop.php:31 PerformanceCheckQueryLoop Database queries within loops are slow. Consider using JOINS and/or other SQL constructs.
+integration/queryloop/queryloop.php:32 PerformanceCheckQueryLoop Database queries within loops are slow. Consider using JOINS and/or other SQL constructs.
+integration/queryloop/queryloop.php:42 PerformanceCheckQueryLoop Database queries within loops are slow. Consider using JOINS and/or other SQL constructs.
+integration/queryloop/queryloop.php:48 PerformanceCheckQueryLoop Database queries within loops are slow. Consider using JOINS and/or other SQL constructs.

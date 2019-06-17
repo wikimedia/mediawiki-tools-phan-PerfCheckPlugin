@@ -1,0 +1,2 @@
+integration/array_map/array_map.php:15 PerformanceCheckArrayMap Array_map with a lambda is slow. Consider replacing with a foreach loop, a string callable, or save the closure in a variable.
+integration/array_map/array_map.php:20 PerformanceCheckArrayMap Array_map with a lambda is slow. Consider replacing with a foreach loop, a string callable, or save the closure in a variable.

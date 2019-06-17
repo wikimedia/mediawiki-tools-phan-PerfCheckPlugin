@@ -1,0 +1,3 @@
+integration/loopfunc/loopfunc.php:11 PerformancheCheckLoopFunction Calling a function in the loop condition is slow.
+integration/loopfunc/loopfunc.php:34 PerformancheCheckLoopFunction Calling a function in the loop condition is slow.
+integration/loopfunc/loopfunc.php:54 PerformancheCheckLoopFunction Calling a function in the loop condition is slow.

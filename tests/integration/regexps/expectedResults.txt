@@ -1,0 +1,4 @@
+integration/regexps/regexps.php:7 PerformanceCheckLiteralRegex Calling a regexp function on a literal value. Consider using strpos or str_replace.
+integration/regexps/regexps.php:16 PerformanceCheckLiteralRegex Calling a regexp function on a literal value. Consider using strpos or str_replace.
+integration/regexps/regexps.php:18 PerformanceCheckLiteralRegex Calling a regexp function on a literal value. Consider using strpos or str_replace.
+integration/regexps/regexps.php:20 PerformanceCheckLiteralRegex Calling a regexp function on a literal value. Consider using strpos or str_replace.
