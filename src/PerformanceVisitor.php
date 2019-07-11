@@ -1,5 +1,6 @@
 <?php declare( strict_types=1 );
 
+use Phan\Config;
 use Phan\AST\ASTHasher;
 use Phan\AST\ContextNode;
 use ast\Node;
@@ -143,7 +144,24 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	 * @param string $name
 	 */
 	protected function emitPerformanceIssue( string $name ) : void {
-		$this->emit( $name, self::ISSUES_MAP[ $name ]['msg'], [], self::ISSUES_MAP[ $name ]['severity'] );
+		$shouldEcho = Config::getValue( 'plugin_config' )['perf_check_echo'] ?? false;
+		if ( $shouldEcho ) {
+			// Hack for Wikimedia CI
+			printf(
+				"PerformanceCheck - %s in %s at line %d: %s\n",
+				$name,
+				$this->context->getFile(),
+				$this->context->getLineNumberStart(),
+				self::ISSUES_MAP[ $name ]['msg']
+			);
+		} else {
+			$this->emit(
+				$name,
+				self::ISSUES_MAP[ $name ]['msg'],
+				[],
+				self::ISSUES_MAP[ $name ]['severity']
+			);
+		}
 	}
 
 	/**
