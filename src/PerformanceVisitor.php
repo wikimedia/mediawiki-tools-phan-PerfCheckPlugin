@@ -1,9 +1,9 @@
 <?php declare( strict_types=1 );
 
-use Phan\Config;
+use ast\Node;
 use Phan\AST\ASTHasher;
 use Phan\AST\ContextNode;
-use ast\Node;
+use Phan\Config;
 use Phan\Issue;
 use Phan\Language\Element\FunctionInterface;
 use Phan\Language\Type\LiteralStringType;
@@ -17,7 +17,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	/**
 	 * All issues which we currently emit.
 	 */
-	const ISSUES_MAP = [
+	private const ISSUES_MAP = [
 		'PerformanceCheckArrayMap' => [
 			'msg' => 'Array_map with a lambda is slow. Consider replacing with a foreach ' .
 				'loop, a string callable, or save the closure in a variable.',

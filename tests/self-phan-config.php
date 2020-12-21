@@ -2,7 +2,7 @@
 
 // Config for self-analysis.
 
-use \Phan\Config;
+use Phan\Config;
 
 // If xdebug is enabled, we need to increase the nesting level for phan
 ini_set( 'xdebug.max_nesting_level', 1000 );
@@ -48,6 +48,11 @@ return [
 	'generic_types_enabled' => true,
 
 	'warn_about_undocumented_throw_statements' => true,
+
+	'suppress_issue_types' => [
+		// As noted in phan's own cfg file: "The types of ast\Node->children are all possibly unset"
+		'PhanTypePossiblyInvalidDimOffset',
+	],
 
 	'plugins' => [
 		'UnusedSuppressionPlugin',
