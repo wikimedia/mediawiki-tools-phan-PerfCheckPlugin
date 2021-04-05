@@ -14,6 +14,7 @@ echo Starting phan
 
 php "./vendor/phan/phan/phan" \
         --project-root-directory . \
+        --allow-polyfill-parser \
         --config-file "tests/self-phan-config.php" \
         --output "php://stdout" \
         $progressBar $@

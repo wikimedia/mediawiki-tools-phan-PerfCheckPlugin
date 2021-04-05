@@ -33,7 +33,7 @@
 			"parallel-lint . --exclude vendor",
 			"composer phpcs",
 			"composer minus-x",
-			"./tests/run-phan-on-plugin.sh -p",
+			"composer phan-for-plugin",
 			"phpunit"
 		],
 		"phpcs": "phpcs -p -s",
