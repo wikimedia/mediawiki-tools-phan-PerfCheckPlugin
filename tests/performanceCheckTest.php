@@ -15,6 +15,7 @@ class PerformanceCheckTest extends \PHPUnit\Framework\TestCase {
 		chdir( __DIR__ . '/../' );
 		$cmd = "php vendor/phan/phan/phan" .
 			" --project-root-directory \"tests/\"" .
+			" --allow-polyfill-parser" .
 			" --config-file \"integration-test-config.php\"" .
 			" -l \"integration/$name\"";
 
