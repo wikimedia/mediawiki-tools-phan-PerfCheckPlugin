@@ -70,7 +70,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	/**
 	 * @inheritDoc
 	 */
-	public function visitMethodCall( Node $node ) : void {
+	public function visitMethodCall( Node $node ): void {
 		try {
 			$method = $this->getCtxN( $node )->getMethod( $node->children['method'], false );
 		} catch ( \Phan\Exception\NodeException $_ ) {
@@ -89,7 +89,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	 * Get a list of DB select methods
 	 * @return array
 	 */
-	protected function getDBMethods() : array {
+	protected function getDBMethods(): array {
 		static $dbMethods = [];
 
 		if ( $dbMethods ) {
@@ -118,7 +118,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	/**
 	 * Handles a call to select methods, to prevent queries within loops.
 	 */
-	protected function handleDBMethod() : void {
+	protected function handleDBMethod(): void {
 		if ( strpos( $this->context->getFile(), 'maintenance/' ) !== false ) {
 			// Queries inside loops are common in this case.
 			return;
@@ -143,7 +143,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	 * Shorthand to emit one of our issues
 	 * @param string $name
 	 */
-	protected function emitPerformanceIssue( string $name ) : void {
+	protected function emitPerformanceIssue( string $name ): void {
 		$shouldEcho = Config::getValue( 'plugin_config' )['perf_check_echo'] ?? false;
 		if ( $shouldEcho ) {
 			// Hack for Wikimedia CI
@@ -167,7 +167,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	/**
 	 * @inheritDoc
 	 */
-	public function visitCall( Node $node ) : void {
+	public function visitCall( Node $node ): void {
 		if ( $node->children['expr']->kind !== \ast\AST_NAME ) {
 			return;
 		}
@@ -193,7 +193,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	 * static doesn't seem to help.
 	 * @param Node $node
 	 */
-	protected function handleArrayMap( Node $node ) : void {
+	protected function handleArrayMap( Node $node ): void {
 		$cb = $node->children['args']->children[0];
 
 		if ( !( $cb instanceof Node ) ) {
@@ -209,7 +209,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	 * Check a call to str_replace and see if it can be replaced with strtr
 	 * @param Node $node
 	 */
-	protected function handleStrReplace( Node $node ) : void {
+	protected function handleStrReplace( Node $node ): void {
 		$args = $node->children['args']->children;
 		if ( $args[0] instanceof Node && $args[0]->kind === \ast\AST_CALL ) {
 			// First argument. We're looking for array_keys(something)
@@ -249,7 +249,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	 * Check a regex function to see if it's actually called with a plain text needle
 	 * @param Node $node
 	 */
-	protected function handleRegexFunc( Node $node ) : void {
+	protected function handleRegexFunc( Node $node ): void {
 		$pattern = $node->children['args']->children[0];
 		if ( $pattern instanceof Node && $pattern->kind === \ast\AST_VAR ) {
 			$var = $this->getCtxN( $pattern )->getVariable();
@@ -288,21 +288,21 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	/**
 	 * @inheritDoc
 	 */
-	public function visitFor( Node $node ) : void {
+	public function visitFor( Node $node ): void {
 		$this->handleLoop( $node );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function visitDoWhile( Node $node ) : void {
+	public function visitDoWhile( Node $node ): void {
 		$this->handleLoop( $node );
 	}
 
 	/**
 	 * @inheritDoc
 	 */
-	public function visitWhile( Node $node ) : void {
+	public function visitWhile( Node $node ): void {
 		$this->handleLoop( $node );
 	}
 
@@ -310,7 +310,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	 * Handles for, while and dowhile to find repeated function calls in the loop condition.
 	 * @param Node $node
 	 */
-	protected function handleLoop( Node $node ) : void {
+	protected function handleLoop( Node $node ): void {
 		// @todo Use a broader criterion, e.g. if the function is native (ideally, this should check
 		// whether the function is pure, i.e. it doesn't change its outer state)
 		$blacklist = [
@@ -363,7 +363,7 @@ class PerformanceVisitor extends PluginAwarePostAnalysisVisitor {
 	 * Check long chains of elseifs to see if they can be converted to switch
 	 * @inheritDoc
 	 */
-	public function visitIf( Node $node ) : void {
+	public function visitIf( Node $node ): void {
 		if ( \Phan\Config::getValue( 'simplify_ast' ) ) {
 			// Too much stuff to dig through
 			return;
